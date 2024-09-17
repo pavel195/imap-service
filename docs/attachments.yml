@@ -1,0 +1,42 @@
+Получить вложения по идентификатору письма и/или идентификатору файла. 
+Если нет идент.файла, то скачиваются все файлы из письма в виде архива
+Один из параметров inn или ogrn должен обязательно присутствовать.
+
+---
+parameters:
+  - name: token
+    in: header
+    description: "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\""
+    required: true
+    scheme: bearer
+    bearerFormat: JWT
+  - name: id
+    in: path
+    description: Идентификатор письма
+    type: int
+    required: true
+  - name: attach
+    in: path
+    description: Идентификатор файла в письме
+    type: int
+    required: false
+  - name: inn
+    in: query
+    description: ИНН
+    type: string
+    required: false
+  - name: ogrn
+    in: query
+    description: ОГРН
+    type: string
+    required: false
+definitions:
+  Result:
+    type: string
+responses:
+  200:
+    description: Файл вложения из письма
+  400:
+    description: Не правильный запрос
+  500:
+    description: Системная ошибка

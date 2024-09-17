@@ -1,0 +1,30 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+sentry-sdk = "*"
+python-dotenv = "*"
+flask-restful = "*"
+flask-jwt-extended = "*"
+passlib = "*"
+dynaconf = "*"
+json-fix = "*"
+aioimaplib = "*"
+bs4 = "*"
+flask-api = "*"
+werkzeug = "==2.2.2"
+requests = "*"
+python-json-logger = "==2.0.7"
+flask-httpauth = "*"
+pyjwt = "*"
+flasgger = "*"
+setuptools = "*"
+flask-cors = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"

@@ -1,0 +1,2 @@
+from sentry_sdk import init
+init()

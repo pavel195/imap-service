@@ -1,0 +1,27 @@
+default:
+  SECRET_KEY: None
+  JWT_AUTH_HEADER_PREFIX: Bearer
+  JWT_REQUIRED_CLAIMS:
+    - exp
+    - iat
+    - jti
+  JWT_VERIFY_SIGNATURE: True
+  PAGINATOR:
+    PageSize: 50
+  DEFAULT_MAIL_FOLDERS: Inbox
+  LOG_DIR: log
+  OUTPUT_DIR: download
+  INFO_LOG_FILENAME: app.log
+  DEBUG_LOG_FILENAME: debug.log
+  WARNING_LOG_FILENAME: warning.log
+  ERROR_LOG_FILENAME: error.log
+  ENCONING: windows-1251  
+  JSON_AS_ASCII: False
+  DOCVIEWER_API: "https://docviewer.sm-rso.qqube.ru"
+  SWAGGER:
+    title: imap-service
+    openapi: 3.0.2
+    uiversion: 3
+    doc_dir: ./docs/
+    specs_route: /swagger/
+

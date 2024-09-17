@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<pre>
+  {{paginat.timer}}
+  "inn": {{paginat.inn}}
+  "ogrn": {{paginat.ogrn}}
+  <!-- "current": <a href="{{paginat.current}}">{{paginat.current}}</a> -->
+  {
+    "count":  {{paginat.count}},
+    "next": <a href="{{paginat.next}}">{{paginat.next}}</a>,
+    "page": {{paginat.page}},
+    "pagesize": {{paginat.pagesize}},
+    "previous": <a href="{{paginat.previous}}">{{paginat.previous}}</a>,
+
+    "results": [
+    {% for result in paginat.results %}      {
+            "id": <a href="{{url}}mail/{{result.id.decode()}}">{{result.id}}</a>,
+            "sender":"{{result.sender}}",
+            "subject":"{{result.subject}}",
+            "body": "{{result.body[:40]}}",
+            <a href="{{url}}mail/{{result.id.decode()}}/attachments">"files":</a> [
+        {% for fi in result.files %}     <a href="{{url}}mail/{{result.id.decode()}}/attachments/{{fi.id}}">{{fi.name}}</a>, {{result.error_message}}
+        {% endfor %}    ]  
+          }
+    {% endfor %} ]
+  }
+</pre>
+{% endblock %}

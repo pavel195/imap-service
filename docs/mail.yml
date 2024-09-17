@@ -1,0 +1,111 @@
+Список писем при нахождении ИНН или ОГРН в заголовке или теле письма
+Если указан идентификатор письма (id), то получаем только это письмо.
+Один из параметров inn или ogrn должен обязательно присутствовать.
+---
+parameters:
+  - name: token
+    in: header
+    description: "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\""
+    required: true
+    scheme: bearer
+    bearerFormat: JWT
+  - name: id
+    in: path
+    description: Идентификатор письма
+    type: int
+    required: false
+  - name: inn
+    in: query
+    description: ИНН
+    type: string
+    required: false
+  - name: ogrn
+    in: query
+    description: ОГРН
+    type: string
+    required: false
+  - name: page
+    in: query
+    description: номер страницы
+    type: int
+    required: false
+  - name: page_size
+    in: query
+    description: количество писем на одной странице
+    type: int
+    required: false
+responses:
+  200:
+    description: Пагинатор найденных писем
+    schema:
+      ref$: '#/components/schemas/paggination'
+
+  400:
+    description: Не правильный запрос
+  500:
+    description: Системная ошибка
+
+components:
+  schemas:
+    file:
+      type: object
+      properties:
+        id:
+          type: string (hash)
+          description: идентификатор файла
+        name:
+          type: string
+          description: имя файла
+    mail:
+      type: object
+      properties:
+        id:
+          type: int
+          description: идентификатор письма
+        sender:
+          type: string
+          description: отправитель
+        subject:
+          type: string
+          description: тема письма
+        body:
+          type: string
+          description: фрагмент тела письма с найденными данными
+        date:
+          type: date
+          description: дата получения письма
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/file'
+    paggination:
+      description: Пагинатор писем
+      type: object
+      properties:
+        inn:
+          type: str
+          description: ИНН
+        ogrn:
+          type: str
+          description: ОГРН
+        page:
+          type: int
+        page_size:
+          type: int
+        count:
+          type: int
+          description: номер страницы
+        current:
+          type: link
+          description: ссылка на текущую страницу
+        next:
+          type: link
+          description: ссылка на следующую страницу
+        previous:
+          type: link
+          description: ссылка на предыдущую страницу
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/mail'
+

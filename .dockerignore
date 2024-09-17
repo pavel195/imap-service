@@ -1,0 +1,8 @@
+.vscode/
+*.log
+log/
+download/
+build/
+.git/
+.gitignore
+.dockerignore

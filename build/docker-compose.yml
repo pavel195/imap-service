@@ -1,0 +1,26 @@
+version: "3"
+
+networks:
+  nginx-proxy:
+    external: true
+
+services:
+  parser:
+    build: 
+      context: ../
+      dockerfile: build/Dockerfile
+    image: imap-service:latest
+    container_name: imap-service
+    command: bash -c "bash boot.sh; sleep 1"
+    # command: gunicorn --bind 0.0.0.0:5000 main:app
+    restart: always
+    env_file:
+      - ./.env
+    networks: 
+        - nginx-proxy
+    # volumes:
+    #   - ./:/app
+    # ports:
+    #   - "5000:5000"
+
+

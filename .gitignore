@@ -1,0 +1,8 @@
+__pycache__/
+.vscode/
+*.log
+log/
+download/
+.secrets.yaml
+settings_local.py
+
